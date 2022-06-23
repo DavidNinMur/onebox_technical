@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { AppService } from "../app.service";
 
+import { events } from 'src/app/models/events';
 @Component({
   selector: "catalog-listing",
   templateUrl: "./catalog-listing.component.html",
   styleUrls: ["./catalog-listing.component.scss"]
 })
 export class CatalogListingComponent implements OnInit {
-  responseFromService: any;
+  responseFromService: Array<events> = [];
   public headerTitle: string = "Catalog";
   constructor(private appService: AppService) { }
 
@@ -20,21 +21,17 @@ export class CatalogListingComponent implements OnInit {
 
 
   getParsedEventsList(unparsedEventList: any) {
-    let newParsedEventList: Array<any> = [];
+    let newParsedEventList: Array<events> = [];
     unparsedEventList.forEach((unparsedEventObj: any) => {
-      let newParsedEventObj: any = {};
-      newParsedEventObj['idStr'] = unparsedEventObj.id;
-      newParsedEventObj['titleStr'] = unparsedEventObj.title;
-      newParsedEventObj['subtitleStr'] = unparsedEventObj.subtitle;
-      newParsedEventObj['imageStr'] = unparsedEventObj.image;
-      newParsedEventObj['placeStr'] = unparsedEventObj.place;
-      newParsedEventObj['startDateStr'] = new Date(parseInt(unparsedEventObj.startDate)).toLocaleDateString(
+      const startDateStr = new Date(parseInt(unparsedEventObj.startDate)).toLocaleDateString(
         "en-GB"
-      );;
-      newParsedEventObj['endDateStr'] = new Date(parseInt(unparsedEventObj.endDate)).toLocaleDateString(
+      );
+      const finishDateStr = new Date(parseInt(unparsedEventObj.endDate)).toLocaleDateString(
         "en-GB"
-      );;;
-      newParsedEventObj['descriptionStr'] = unparsedEventObj.description;
+      );
+
+      let newParsedEventObj = new events(unparsedEventObj.id, unparsedEventObj.title, unparsedEventObj.subtitle, unparsedEventObj.image, unparsedEventObj.place, startDateStr, finishDateStr, unparsedEventObj.description);
+
       newParsedEventList.push(newParsedEventObj)
     })
 
