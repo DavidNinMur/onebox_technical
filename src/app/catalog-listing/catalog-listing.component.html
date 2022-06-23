@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div
+      class="col-sm-6 d-flex align-items-stretch"
+      id="padding-bottom"
+      *ngFor="let eventObj of responseFromService"
+    >
+      <div class="card">
+        <div class="card-header no-color-background">
+          <h5
+            class="card-title header"
+            [routerLink]="['/session']"
+            [queryParams]="{ id: eventObj.idStr }"
+          >
+            {{ eventObj.titleStr }}
+          </h5>
+          <p
+            class="card-text header"
+            [routerLink]="['/session']"
+            [queryParams]="{ id: eventObj.idStr }"
+          >
+            {{ eventObj.subtitleStr }}
+          </p>
+        </div>
+        <img
+          class="card-img header"
+          src="{{ eventObj.imageStr }}"
+          alt="Card image cap"
+          [routerLink]="['/session']"
+          [queryParams]="{ id: eventObj.idStr }"
+        />
+        <div class="card-body flex-column">
+          <p class="card-text">
+            {{ eventObj.startDateStr }} - {{ eventObj.endDateStr }}
+          </p>
+          <p class="card-text ocultar-div">
+            {{ eventObj.descriptionStr }}
+          </p>
+        </div>
+
+        <a
+          class="reference-button btn btn-primary mt-auto link-button"
+          [routerLink]="['/session']"
+          [queryParams]="{ id: eventObj.idStr }"
+        >
+          <span>Comprar</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

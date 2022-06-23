@@ -10,7 +10,19 @@ export class AppService {
 
   public headerTitle = new BehaviorSubject("Catalog");
 
-  getAllEventsInFakeCall() {
+  getParsedEventObj(unparsedEventObj: any) {
+    let newParsedEventObj: any = {};
+
+    newParsedEventObj['idStr'] = unparsedEventObj.id;
+    newParsedEventObj['titleStr'] = unparsedEventObj.title;
+    newParsedEventObj['subtitleStr'] = unparsedEventObj.subtitle;
+    newParsedEventObj['imageStr'] = unparsedEventObj.image;
+    newParsedEventObj['sessionsList'] = unparsedEventObj.sessions;
+
+    return newParsedEventObj;
+  }
+
+  async getAllEventsInFakeCall() {
     const urlToGetDataStr: string = "./assets/data/events.json";
     return this.httpClient.get(urlToGetDataStr);
   }
