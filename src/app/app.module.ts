@@ -5,14 +5,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppService } from "./app.service";
 
-import { CatalogListingComponent } from "./catalog-listing/catalog-listing.component";
 import { AppComponent } from './app.component';
+import { CatalogListingComponent } from "./catalog-listing/catalog-listing.component";
+import { SessionListingComponent } from "./session-listing/session-listing.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogListingComponent,
-
+    SessionListingComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [AppService],

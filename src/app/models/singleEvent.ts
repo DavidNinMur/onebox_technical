@@ -1,18 +1,25 @@
 
 
-export class singleEvents {
+export class singleEvent {
+    constructor(
+        public eventObj: eventInfo,
+        public sessionsList: Array<eventSession>,
+    ) { }
+};
+
+export class eventInfo {
     constructor(
         public idStr: string,
         public titleStr: String,
         public subtitleStr: String,
         public imageStr: String,
-        public sessionsList: Array<event_session>,
     ) { }
-};
+}
 
-class event_session {
+export class eventSession {
     constructor(
-        public date: string,
-        public availability: String,
+        public dateStr: string,
+        public availabilityNumber: Number,
+        public buyTicketNumber: Number
     ) { }
 };

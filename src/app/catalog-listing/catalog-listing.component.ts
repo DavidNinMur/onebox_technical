@@ -13,7 +13,6 @@ export class CatalogListingComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   async ngOnInit(): Promise<void> {
-    this.appService.setNewHeaderTitle(this.headerTitle);
     (await this.appService.getAllEventsInFakeCall()).subscribe((resultList: any) => {
       this.responseFromService = this.getParsedEventsList(resultList);
     })

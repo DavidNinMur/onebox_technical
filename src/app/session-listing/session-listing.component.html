@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row return-button">
+    <a (click)="onclick()"> Volver </a>
+  </div>
+  <div class="row clear-float" *ngIf="componentLoaded">
+    <div
+      class="col-sm-6 d-flex align-items-stretch session-listing border-session-listing"
+    >
+      <ul>
+        <li *ngFor="let sessionObj of responseFromService?.sessionsList">
+          Fecha: {{ sessionObj.dateStr }}, Disponibilidad:
+          {{ sessionObj.availabilityNumber }}
+          <div class="tickets">
+            <button
+              class="click-button"
+              (click)="restOneTicket(sessionObj.dateStr)"
+            >
+              <i class="fa fa-minus listing-icons"></i>
+            </button>
+            <span class="listing-buyTicket">{{
+              sessionObj.buyTicketNumber
+            }}</span>
+            <button
+              class="click-button"
+              (click)="addOneTicket(sessionObj.dateStr)"
+            >
+              <i class="fa fa-plus listing-icons"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-6 session-listing shopping-cart">
+      <h5 class="card-title header">
+        {{ responseFromService.eventObj.titleStr }}
+      </h5>
+      <ul>
+        <li *ngFor="let sessionObj of responseFromService.sessionsList">
+          <div *ngIf="sessionObj.buyTicketNumber !== 0">
+            {{ sessionObj.dateStr }}
+            <div class="shopping-ticket">
+              x{{ sessionObj.buyTicketNumber }}
+              <button
+                class="click-button"
+                (click)="restOneTicket(sessionObj.dateStr)"
+              >
+                <img
+                  class="trash-icon"
+                  src="../../assets/img/trash.png"
+                  alt="Trash"
+                />
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" *ngIf="!componentLoaded">
+    <p>EVENT INFO NOT FOUND</p>
+  </div>
+</div>

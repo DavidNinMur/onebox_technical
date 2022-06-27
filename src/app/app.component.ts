@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { AppService } from "./app.service";
 
 @Component({
   selector: "app-root",
@@ -8,11 +7,7 @@ import { AppService } from "./app.service";
 })
 export class AppComponent {
 
-  headerTitleString: string = '';
+  headerTitleString: string = 'ONEBOX';
 
-  constructor(private mainService: AppService) { }
-
-  ngOnInit() {
-    this.mainService.headerTitle.subscribe(newTitleStr => (this.headerTitleString = newTitleStr));
-  }
+  constructor() { }
 }
